@@ -1,0 +1,46 @@
+﻿<Window x:Class="filv.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:filv"
+        mc:Ignorable="d"
+        Title="템렙 뷰어"
+        SizeToContent="WidthAndHeight"
+        Background="Transparent"
+        AllowsTransparency="True"
+        ResizeMode="NoResize"
+        Topmost="True"
+        WindowStyle="None"
+        Loaded="Window_Loaded" Foreground="White">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0"
+                   x:Name="lbl"
+                   Text="220 - 250"
+                   FontSize="27"
+                   FontWeight="Bold"
+                   TextAlignment="Center"
+                   MouseDown="lbl_MouseDown">
+            <TextBlock.Effect>
+                <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="1" Color="Black"/>
+            </TextBlock.Effect>
+        </TextBlock>
+
+        <TextBlock Grid.Row="1"
+                   x:Name="lblName"
+                   Text="가나다라마바사"
+                   FontSize="15"
+                   FontWeight="Bold"
+                   TextAlignment="Center"
+                   MouseDown="lbl_MouseDown">
+            <TextBlock.Effect>
+                <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="1" Color="Black"/>
+            </TextBlock.Effect>
+        </TextBlock>
+    </Grid>
+</Window>
