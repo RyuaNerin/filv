@@ -15,9 +15,6 @@ using System.Windows.Threading;
 
 namespace filv
 {
-    /// <summary>
-    /// MainWindow.xaml에 대한 상호 작용 논리
-    /// </summary>
     public partial class MainWindow : Window
     {
         struct ItemInfo
@@ -32,6 +29,8 @@ namespace filv
 
         private Process m_ffxiv;
         private IntPtr m_ffxivWindows;
+
+        private int m_opcode = 286; // 3.5
 
         public MainWindow()
         {
@@ -49,6 +48,13 @@ namespace filv
         {
             this.lbl.Text = "";
             this.lblName.Text = "업데이트중";
+
+            if (GitHubLastestRealease.CheckNewVersion("https://api.github.com/repos/RyuaNerin/filv/releases"))
+            {
+                MessageBox.Show(this, "업데이트가 필요합니다.");
+                Process.Start(new ProcessStartInfo { Arguments = "https://github.com/RyuaNerin/filv/releases/latest", UseShellExecute = true });
+                return;
+            }
 
             try
             {
@@ -85,6 +91,7 @@ namespace filv
                 App.Current.Shutdown();
                 return;
             }
+            await Task.Run(new Action(this.UpdateOPCode));
 
             var net = new FFXIVApp.Network();
             net.StartCapture(this.m_ffxiv);
@@ -136,6 +143,18 @@ namespace filv
             }
         }
 
+        private void UpdateOPCode()
+        {
+            try
+            {
+                using (var wc = new WebClient())
+                    this.m_opcode = int.Parse(wc.DownloadString("https://raw.githubusercontent.com/RyuaNerin/filv/master/opcode.txt"));
+            }
+            catch
+            {
+            }
+        }
+
         private bool ReadData(string path)
         {
             try
@@ -169,6 +188,10 @@ namespace filv
 
         private void Net_HandleMessageEvent(byte[] data)
         {
+            var opcode = BitConverter.ToUInt16(data, 18);
+            if (opcode != this.m_opcode)
+                return;
+
             int totalLv = 0;
             int weaponLv = 0;
 

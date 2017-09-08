@@ -124,9 +124,7 @@ namespace FFXIVApp
                     return;
                 }
 
-                var opcode = BitConverter.ToUInt16(message, 18);
-                if (opcode == 262)
-                    this.HandleMessageEvent?.Invoke(message);
+                this.HandleMessageEvent?.Invoke(message);
             }
             catch
             {
