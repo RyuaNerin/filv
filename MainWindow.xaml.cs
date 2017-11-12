@@ -113,7 +113,7 @@ namespace filv
                     if (fileInfo.Exists)
                     {
                         wc.Method = "HEAD";
-                        wc.DownloadData("https://raw.githubusercontent.com/RyuaNerin/filv/master/item.exh_ko.csv.gz");
+                        wc.DownloadData("https://raw.githubusercontent.com/RyuaNerin/filv/master/item.exh_ko_fixed.csv.gz");
 
                         try
                         {
@@ -131,7 +131,7 @@ namespace filv
 
                     wc.DownloadProgressChanged += (s, e) => this.Dispatcher.Invoke(new Action(() => this.lbl.Text = e.ProgressPercentage + " %"));
 
-                    wc.DownloadFileAsync(new Uri("https://raw.githubusercontent.com/RyuaNerin/filv/master/item.exh_ko.csv.gz"), path);
+                    wc.DownloadFileAsync(new Uri("https://raw.githubusercontent.com/RyuaNerin/filv/master/item.exh_ko_fixed.csv.gz"), path);
                     while (wc.IsBusy) Thread.Sleep(100);
                 }
 
