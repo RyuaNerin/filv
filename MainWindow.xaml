@@ -12,32 +12,63 @@
         ResizeMode="NoResize"
         Topmost="True"
         WindowStyle="None"
-        Loaded="Window_Loaded" Foreground="White">
-    <Grid>
+        Loaded="Window_Loaded"
+        Foreground="White">
+    <Grid MouseDown="lbl_MouseDown">
+        <Grid.Resources>
+            <Style TargetType="{x:Type TextBlock}">
+                <Setter Property="FontWeight" Value="Bold" />
+                <Setter Property="TextAlignment" Value="Center" />
+            </Style>
+        </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+        </Grid.ColumnDefinitions>
 
         <TextBlock Grid.Row="0"
+                   Grid.RowSpan="2"
+                   Margin="0 0 5 0"
                    x:Name="lbl"
                    Text="220 - 250"
-                   FontSize="27"
-                   FontWeight="Bold"
-                   TextAlignment="Center"
-                   MouseDown="lbl_MouseDown">
+                   FontSize="27">
             <TextBlock.Effect>
                 <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="1" Color="Black"/>
             </TextBlock.Effect>
         </TextBlock>
 
+        <TextBlock Grid.Row="0"
+                   Grid.Column="1"
+                   x:Name="lblNonMaterial"
+                   Visibility="Collapsed"
+                   Text="0"
+                   FontSize="13">
+            <TextBlock.Effect>
+                <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="1" Color="Black"/>
+            </TextBlock.Effect>
+        </TextBlock>
+        
         <TextBlock Grid.Row="1"
+                   Grid.Column="1"                   
+                   x:Name="lblHighMaterial"
+                   Visibility="Collapsed"
+                   Text="0"
+                   FontSize="13">
+            <TextBlock.Effect>
+                <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="1" Color="Black"/>
+            </TextBlock.Effect>
+        </TextBlock>
+
+        <TextBlock Grid.Row="2"
+                   Grid.ColumnSpan="2"
                    x:Name="lblName"
                    Text="가나다라마바사"
-                   FontSize="15"
-                   FontWeight="Bold"
-                   TextAlignment="Center"
-                   MouseDown="lbl_MouseDown">
+                   FontSize="13">
             <TextBlock.Effect>
                 <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="1" Color="Black"/>
             </TextBlock.Effect>

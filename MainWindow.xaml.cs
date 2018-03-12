@@ -168,11 +168,10 @@ namespace filv
 
                     while (reader.Read())
                     {
-                        var th = reader.GetField<uint>(28);     // AC
+                        var id = reader.GetField<uint  >(0); // A
+                        var lv = reader.GetField<ushort>(1); // B
+                        var th = reader.GetField<uint  >(2); // C
                         if (th == 0) continue;
-
-                        var id = reader.GetField<uint>(0);      // A
-                        var lv = reader.GetField<ushort>(12);   // M
 
                         this.m_items.Add(id, new ItemInfo { ItemLevel = lv, isTwohand = (th == 13) });
                     }
